@@ -12,6 +12,7 @@ import java.nio.CharBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.nio.charset.StandardCharsets;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
@@ -31,13 +32,16 @@ public class AsynchronousIOClientUnitTest {
     }
 
     @Test
-    public void whenGetUsingNIO_thenUseBuffers() throws IOException {
+    public void givenJavaNIO_whenReadingAndWriting_thenUseBuffers() throws IOException {
+        // given a NIO SocketChannel and a charset
         InetSocketAddress address = new InetSocketAddress("localhost", wireMockRule.port());
         SocketChannel socketChannel = SocketChannel.open(address);
-        Charset charset = Charset.forName("UTF-8");
+        Charset charset = StandardCharsets.UTF_8;
+
+        // when we write and read using buffers
         socketChannel.write(charset.encode(CharBuffer.wrap("GET " + REQUESTED_RESOURCE + " HTTP/1.0\r\n\r\n")));
 
-        ByteBuffer buffer = ByteBuffer.allocate(8192); // allocateDirect for direct memory access
+        ByteBuffer buffer = ByteBuffer.allocate(8); // or allocateDirect if we need direct memory access
         CharBuffer charBuffer = CharBuffer.allocate(8192);
         CharsetDecoder decoder = charset.newDecoder();
         StringBuilder ourStore = new StringBuilder();
@@ -47,18 +51,22 @@ public class AsynchronousIOClientUnitTest {
             buffer.compact();
         }
         socketChannel.close();
-        assertTrue(ourStore.length() > 0);
+
+        // then we read and saved our data
         assertTrue(ourStore.toString().contains("It worked!"));
     }
 
     @Test
-    public void whenGetUsingNIO_thenUseSmallBuffers() throws IOException {
+    public void givenJavaNIO_whenReadingAndWriting_thenSmallBuffers() throws IOException {
+        // given a NIO SocketChannel and a charset
         InetSocketAddress address = new InetSocketAddress("localhost", wireMockRule.port());
         SocketChannel socket = SocketChannel.open(address);
-        Charset charset = Charset.forName("UTF-8");
+        Charset charset = StandardCharsets.UTF_8;
+
+        // when we write and read using buffers that are too small for our message
         socket.write(charset.encode(CharBuffer.wrap("GET " + REQUESTED_RESOURCE + " HTTP/1.0\r\n\r\n")));
 
-        ByteBuffer buffer = ByteBuffer.allocate(8); // allocateDirect for direct memory access
+        ByteBuffer buffer = ByteBuffer.allocate(8); // or allocateDirect if we need direct memory access
         CharBuffer charBuffer = CharBuffer.allocate(8);
         CharsetDecoder decoder = charset.newDecoder();
         StringBuilder ourStore = new StringBuilder();
@@ -68,7 +76,8 @@ public class AsynchronousIOClientUnitTest {
             buffer.compact();
         }
         socket.close();
-        assertTrue(ourStore.length() > 0);
+
+        // then we read and saved our data
         assertTrue(ourStore.toString().contains("It worked!"));
     }
 
