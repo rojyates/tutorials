@@ -31,8 +31,12 @@ public class SynchronousIOClientStaticWiremockUnitTest {
     }
 
     @Test
-    public void whenGetUsingIO_thenUseStreams() throws IOException {
+    public void givenJavaIO_whenReadingAndWritingWithStreams_thenReadSuccessfully() throws IOException {
+        // given an IO socket and somewhere to store our result
         Socket socket = new Socket("localhost", instanceRule.port());
+        StringBuilder ourStore = new StringBuilder();
+
+        // when we write and read (using try-with-resources so our resources are auto-closed)
         try (InputStream serverInput = socket.getInputStream();
           BufferedReader reader = new BufferedReader(new InputStreamReader(serverInput));
           OutputStream clientOutput = socket.getOutputStream();
@@ -40,18 +44,14 @@ public class SynchronousIOClientStaticWiremockUnitTest {
             writer.print("GET " + REQUESTED_RESOURCE + " HTTP/1.0\r\n\r\n");
             writer.flush(); // important - without this the request is never sent, and the test will hang on readLine()
 
-            StringBuilder ourStore = new StringBuilder();
-
             String line = reader.readLine();
             while (line != null) {
                 ourStore.append(line);
                 line = reader.readLine();
             }
-            System.out.println("Our store has length: " + ourStore.length());
-            System.out.println("Our store contains: '" + ourStore.toString() + "'");
-
-            assertTrue(ourStore.length() > 0);
-            assertTrue(ourStore.toString().contains("It worked!"));
         }
+
+        // then we read and saved our data
+        assertTrue(ourStore.toString().contains("It worked!"));
     }
 }
