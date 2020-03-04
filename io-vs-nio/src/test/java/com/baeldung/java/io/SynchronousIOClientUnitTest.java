@@ -13,7 +13,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 import static org.junit.Assert.assertTrue;
 
 public class SynchronousIOClientUnitTest {
-    private static final String REQUESTED_RESOURCE = "/test.txt";
+    private static final String REQUESTED_RESOURCE = "/test.json";
 
     @Rule public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
 
@@ -25,7 +25,7 @@ public class SynchronousIOClientUnitTest {
     }
 
     @Test
-    public void givenJavaIO_whenReadingAndWritingWithStreams_thenReadSuccessfully() throws IOException {
+    public void givenJavaIOSocket_whenReadingAndWritingWithStreams_thenReadSuccessfully() throws IOException {
         // given an IO socket and somewhere to store our result
         Socket socket = new Socket("localhost", wireMockRule.port());
         StringBuilder ourStore = new StringBuilder();

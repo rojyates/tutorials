@@ -32,7 +32,7 @@ public class AsynchronousIOClientUnitTest {
     }
 
     @Test
-    public void givenJavaNIO_whenReadingAndWriting_thenUseBuffers() throws IOException {
+    public void givenJavaNIOSocketChannel_whenReadingAndWriting_thenUseBuffers() throws IOException {
         // given a NIO SocketChannel and a charset
         InetSocketAddress address = new InetSocketAddress("localhost", wireMockRule.port());
         SocketChannel socketChannel = SocketChannel.open(address);
