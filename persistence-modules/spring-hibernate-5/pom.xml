@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${spring-aspects.version}</version>
         </dependency>
         <!-- persistence -->
         <dependency>
@@ -123,6 +123,18 @@
             <artifactId>jaxb-impl</artifactId>
             <version>${com.sun.xml.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.hypersistence</groupId>
+            <artifactId>hypersistence-utils-hibernate-55</artifactId>
+            <version>${io.hypersistence.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -144,6 +156,7 @@
         <org.springframework.version>5.0.2.RELEASE</org.springframework.version>
         <org.springframework.data.version>1.10.6.RELEASE</org.springframework.data.version>
         <org.springframework.security.version>4.2.1.RELEASE</org.springframework.security.version>
+        <spring-aspects.version>6.1.5</spring-aspects.version>
         <!-- persistence -->
         <hibernate.version>5.6.15.Final</hibernate.version>
         <hibernatesearch.version>5.11.12.Final</hibernatesearch.version>
@@ -152,6 +165,8 @@
         <jta.version>1.1</jta.version>
         <com.sun.xml.version>2.3.0.1</com.sun.xml.version>
         <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
+        <io.hypersistence.version>3.7.0</io.hypersistence.version>
+        <postgresql.version>42.4.1</postgresql.version>
     </properties>
 
 </project>

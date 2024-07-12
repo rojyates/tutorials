@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jersey</artifactId>
-    <name>jersey</name>
     <packaging>war</packaging>
+    <name>jersey</name>
 
     <parent>
         <groupId>com.baeldung</groupId>
@@ -104,7 +104,7 @@
     </build>
 
     <properties>
-        <jersey.version>3.1.1</jersey.version>
+        <jersey.version>3.1.5</jersey.version>
     </properties>
 
 </project>

@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-mockito</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-mockito</name>
     <packaging>jar</packaging>
+    <name>spring-mockito</name>
     <description>Injecting Mockito Mocks into Spring Beans</description>
 
     <parent>
         <groupId>com.baeldung</groupId>
-        <artifactId>parent-boot-2</artifactId>
+        <artifactId>parent-boot-3</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../parent-boot-2</relativePath>
+        <relativePath>../../parent-boot-3</relativePath>
     </parent>
 
     <dependencies>
@@ -32,5 +32,9 @@
             <version>${lombok.version}</version>
         </dependency>
     </dependencies>
+
+    <properties>
+        <start-class>com.baeldung.Main</start-class>
+    </properties>
 
 </project>

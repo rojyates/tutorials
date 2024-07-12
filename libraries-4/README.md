@@ -12,4 +12,8 @@ Remember, for advanced libraries like [Jackson](/jackson) and [JUnit](/testing-m
 - [Guide to JDeferred](https://www.baeldung.com/jdeferred)
 - [Introduction to MBassador](https://www.baeldung.com/mbassador)
 - [Using Pairs in Java](https://www.baeldung.com/java-pairs)
+- [Introduction to JFreeChart](https://www.baeldung.com/jfreechart-visualize-data)
+- [Introduction to JavaParser](https://www.baeldung.com/javaparser)
+- [Fault Tolerance in Java Using Failsafe](https://www.baeldung.com/java-failsafe-fault-tolerance)
+- [UDP Messaging Using Aeron](https://www.baeldung.com/java-aeron-udp-messaging)
 - More articles [[<-- prev]](/libraries-3)
